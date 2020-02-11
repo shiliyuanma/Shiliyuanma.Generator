@@ -1,0 +1,33 @@
+﻿@model SqlViewModel
+@{
+    ViewData["Title"] = "";
+}
+
+<div class="row" style="padding-top:15px;">
+    <div style="margin-bottom:15px; color:red;">
+        @Model?.ErrorMsg
+    </div>
+    <form method="post" action="@Url.Action("Index")">
+        <div class="form-group">
+            <label>连接串</label>
+            <input type="text" class="form-control" name="ConnectionString" value="@Model?.ConnectionString">
+        </div>
+        <div class="form-group">
+            <label>表名</label>
+            <input type="text" class="form-control" name="TableNames" value="@Model?.TableNames" placeholder="空格分隔，默认全部生成">
+        </div>
+        <div class="form-group">
+            <label>命名空间</label>
+            <input type="text" class="form-control" name="NamespaceName" value="@Model?.NamespaceName">
+        </div>
+        <div class="form-group">
+            <label>DbContext类名</label>
+            <input type="text" class="form-control" name="DbContextName" value="@Model?.DbContextName">
+        </div>
+        <div class="form-check">
+            @Html.CheckBoxFor(m => m.UseDataAnnotations, new {@class = "form-check-input"})
+            @Html.LabelFor(q => q.UseDataAnnotations, "使用模型注解", new {@class = "form-check-label"})
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 50px; width:200px;">生 成</button>
+    </form>
+</div>

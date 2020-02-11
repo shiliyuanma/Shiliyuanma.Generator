@@ -1,0 +1,14 @@
+task default: %w[run]
+
+task :run do
+  %x(dotnet run)
+end
+
+task :image do
+  %x(docker build -t shiliyuanma/generator-mysql:latest .)
+  %x(docker image prune -f)
+end
+
+task :container do
+  %x(docker run --name generator-mysql --restart always -p 5000:5000 -d shiliyuanma/generator-mysql)
+end
