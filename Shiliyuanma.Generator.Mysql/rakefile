@@ -10,5 +10,5 @@ task :image do
 end
 
 task :container do
-  %x(docker run --name generator-mysql --restart always -p 5000:5000 -d shiliyuanma/generator-mysql)
+  %x(docker run --name generator-mysql --restart always -e ASPNETCORE_URLS=http://*:8002 -p 8002:8002 -d shiliyuanma/generator-mysql)
 end
